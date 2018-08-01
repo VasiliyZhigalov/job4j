@@ -6,35 +6,35 @@ import static org.junit.Assert.assertThat;
 
 public class CalculatorTest {
     @Test
-    public void whenAddOnePlusOneThenTwo(){
+    public void whenAddOnePlusOneThenTwo() {
         Calculator calc = new Calculator();
-        calc.add(1D,1D);
+        calc.add(1D, 1D);
         double result = calc.getResult();
-        double expected=2D;
+        double expected = 2D;
         assertThat(result, is(expected));
     }
     @Test
-    public void whenDiv2On2Then1(){
+    public void whenDiv2On2Then1() {
         Calculator calc = new Calculator();
-        calc.div(2D,2D);
+        calc.div(2D, 2D);
         double result = calc.getResult();
-        double expected=1D;
+        double expected = 1D;
         assertThat(result, is(expected));
     }
     @Test
-    public void whenSub2On2ThenZero(){
+    public void whenSub2On2ThenZero() {
         Calculator calc = new Calculator();
-        calc.subtract(2D,2D);
+        calc.subtract(2D, 2D);
         double result = calc.getResult();
-        double expected=0D;
+        double expected = 0D;
         assertThat(result, is(expected));
     }
     @Test
-    public void whenMult2And2Then4(){
+    public void whenMult2And2Then4() {
         Calculator calc = new Calculator();
-        calc.multiple(2D,2D);
+        calc.multiple(2D, 2D);
         double result = calc.getResult();
-        double expected=4D;
+        double expected = 4D;
         assertThat(result, is(expected));
     }
 }
