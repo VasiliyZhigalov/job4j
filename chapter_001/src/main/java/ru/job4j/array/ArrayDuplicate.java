@@ -17,6 +17,7 @@ public class ArrayDuplicate {
                     array[j] = array[array.length - dupliCounter - 1];
                     array[array.length - dupliCounter - 1] = tmp;
                     dupliCounter++;
+                    j--;
                 }
             }
 
