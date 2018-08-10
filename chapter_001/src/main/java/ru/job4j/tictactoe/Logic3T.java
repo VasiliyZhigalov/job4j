@@ -6,7 +6,6 @@ public class Logic3T {
     public Logic3T(Figure3T[][] table) {
         this.table = table;
     }
-
     /**
      *  проверяет заполнена ли строка true/
      * @param hasMark массив с отметаки заполнения.
@@ -16,11 +15,11 @@ public class Logic3T {
      * @param colStep шаг по столбцу
      * @return true если строка заполнена, иначе false/
      */
-    private boolean isWin(boolean [][] hasMark, int rowBegin, int colBegin, int rowStep, int colStep) {
+    private boolean isWin(boolean[][] hasMark, int rowBegin, int colBegin, int rowStep, int colStep) {
         int rS = rowBegin;
         int cS = colBegin;
         boolean result = true;
-        if (hasMark[rowBegin][colBegin] != true) {
+        if (!hasMark[rowBegin][colBegin]) {
             result = false;
         } else {
             for (int i = 0; i < hasMark.length; i++) {
@@ -34,7 +33,6 @@ public class Logic3T {
         }
         return result;
     }
-
     /**
      * победа крестиков
      * @return true если победили крестики
@@ -42,22 +40,18 @@ public class Logic3T {
     public boolean isWinnerX() {
         int rows = this.table.length;
         boolean[][] hasX = new boolean[rows][rows];
-        //заполнение массива
         for (int out = 0; out < rows; out++) {
             for (int in = 0; in < rows; in++) {
                 hasX[in][out] = this.table[in][out].hasMarkX();
             }
         }
         boolean result = false;
-        // проверка по горизонтали и вертикали
         for (int i = 0; i < rows; i++) {
             result = result || isWin(hasX, i, 0, 0, 1) || isWin(hasX, 0, i, 1, 0);
         }
-        // проверка диагоналей
         result = result || isWin(hasX, 0, 0, 1, 1) || isWin(hasX, 0, rows - 1, 1, -1);
         return result;
     }
-
     /**
      *  Победа ноликов.
      * @return true если победили нолики.
@@ -65,24 +59,21 @@ public class Logic3T {
     public boolean isWinnerO() {
         int rows = this.table.length;
         boolean[][] hasX = new boolean[rows][rows];
-        // заполнение массива
         for (int out = 0; out < rows; out++) {
             for (int in = 0; in < rows; in++) {
                 hasX[in][out] = this.table[in][out].hasMarkO();
             }
         }
         boolean result = false;
-        // проверка по горизонтали и вертикали
         for (int i = 0; i < rows; i++) {
             result = result || isWin(hasX, i, 0, 0, 1) || isWin(hasX, 0, i, 1, 0);
         }
-        // проверка диагоналей
         result = result || isWin(hasX, 0, 0, 1, 1) || isWin(hasX, 0, rows - 1, 1, -1);
         return result;
     }
 
     /**
-     *
+     *  Проверяет заполнено ли поле.
      * @return true если заполнено.
      */
     public boolean hasGap() {
