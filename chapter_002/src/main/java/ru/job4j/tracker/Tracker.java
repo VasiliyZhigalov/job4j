@@ -37,9 +37,9 @@ public class Tracker {
      */
     void replace(String id, Item item) {
         int index = this.findIndexById(id);
-        item.setId(this.generateId(item.getCreated()));
         if (index != -1) {
             items[index] = item;
+            items[index].setId(id);
         }
     }
     /**
@@ -50,7 +50,7 @@ public class Tracker {
     public Item findById(String id) {
         int index = findIndexById(id);
 
-        return index == -1 ? null : items[findIndexById(id)];
+        return index == -1 ? null : items[index];
     }
 
     /**
@@ -67,7 +67,7 @@ public class Tracker {
                     counter++;
                 }
         }
-        return itemByName;
+        return Arrays.copyOf(itemByName, counter + 1);
     }
 
     /**

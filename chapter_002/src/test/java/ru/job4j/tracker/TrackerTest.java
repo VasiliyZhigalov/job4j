@@ -15,7 +15,8 @@ public class TrackerTest {
         Item item2 = new Item(1234L, "test2", "testDescription2");
         tracker.add(item1);
         tracker.add(item2);
-        assertThat("testDescription2", is(tracker.findByName("test2")[0].getDesc()));
+        String id = tracker.findAll()[1].getId();
+        assertThat("testDescription2", is(tracker.findById(id).getDesc()));
     }
     //тест поиска по имени
     @Test
