@@ -28,7 +28,7 @@ public class Tracker {
      */
     private String generateId(long created) {
 
-        return created + "_" + Math.random();
+        return created + "-" + Math.random();
     }
     /**
      * Заменить ячейку в массиве заявок
@@ -67,7 +67,7 @@ public class Tracker {
                     counter++;
                 }
         }
-        return Arrays.copyOf(itemByName, counter + 1);
+        return Arrays.copyOf(itemByName, counter);
     }
 
     /**
@@ -104,7 +104,8 @@ public class Tracker {
      * @return
      */
     public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position + 1);
+
+        return Arrays.copyOf(this.items, this.position);
     }
 
 
