@@ -13,6 +13,12 @@ public class Item {
         this.name = name;
         this.created = created;
     }
+    public Item(long created, String name, String desc) {
+        this.desc = desc;
+        this.name = name;
+        this.created = created;
+    }
+
 
     public String getId() {
         return id;

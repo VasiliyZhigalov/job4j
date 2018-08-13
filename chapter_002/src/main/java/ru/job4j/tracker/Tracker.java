@@ -17,7 +17,7 @@ public class Tracker {
      * @param item новая заявка
      */
     public Item add(Item item) {
-        //item.setId(this.generateId(item.getCreated()));
+        item.setId(this.generateId(item.getCreated()));
         this.items[this.position++] = item;
         return item;
     }
@@ -36,7 +36,11 @@ public class Tracker {
      * @param item новая заявка
      */
     void replace(String id, Item item) {
-        items[this.findIndexById(id)] = item;
+        int index = this.findIndexById(id);
+        item.setId(this.generateId(item.getCreated()));
+        if (index != -1) {
+            items[index] = item;
+        }
     }
     /**
      * Ищет заявку по id
@@ -44,7 +48,9 @@ public class Tracker {
      * @return заявка
      */
     public Item findById(String id) {
-        return items[findIndexById(id)];
+        int index = findIndexById(id);
+
+        return index == -1 ? null : items[findIndexById(id)];
     }
 
     /**
@@ -61,7 +67,7 @@ public class Tracker {
                     counter++;
                 }
         }
-        return Arrays.copyOf(itemByName, counter + 1);
+        return itemByName;
     }
 
     /**
@@ -70,11 +76,14 @@ public class Tracker {
      * @return индекс
      */
     private int findIndexById(String id) {
-        int index = 0;
-        while (!id.equals(items[index].getId()) && index < items.length) {
-            index++;
+        int result = -1;
+        for (int index = 0; index < this.position; index++) {
+            if (id.equals(items[index].getId())) {
+                result = index;
+                break;
+            }
         }
-        return index;
+        return result;
     }
 
     /**
@@ -83,10 +92,12 @@ public class Tracker {
      */
     public void delete(String id) {
 
-        int index = findIndexById(id);
-        items[index] = null;
-        System.arraycopy(items, index + 1, items, index, items.length - index - 1);
-        this.position--;
+        int index = this.findIndexById(id);
+        if (index != -1) {
+            items[index] = null;
+            System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+            this.position--;
+        }
     }
     /**
      * возвращает копию массива this.items без null элементов;

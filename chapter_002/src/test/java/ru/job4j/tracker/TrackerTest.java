@@ -11,49 +11,48 @@ public class TrackerTest {
     @Test
     public void whenIdTest2ThenFindNameTestDescription2() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "testDescription1", 123L);
-        Item item2 = new Item("test2", "testDescription2", 1234L);
+        Item item1 = new Item(123L, "test1", "testDescription1");
+        Item item2 = new Item(1234L, "test2", "testDescription2");
         tracker.add(item1);
         tracker.add(item2);
-        //System.out.println( tracker.findById("test2").getName());
-        assertThat("testDescription2", is(tracker.findById("test2").getName()));
+        assertThat("testDescription2", is(tracker.findByName("test2")[0].getDesc()));
     }
     //тест поиска по имени
     @Test
     public void whenNameTestDescription1ThenFindNameTestDescription2() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "name1", 123L);
-        Item item2 = new Item("test2", "name2", 1234L);
-        Item item3 = new Item("test3", "name1", 1234L);
+        Item item1 = new Item(123L, "test3", "name1");
+        Item item2 = new Item(1234L, "test2", "name2");
+        Item item3 = new Item(1234L, "test3", "name3");
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-        assertThat("test3", is(tracker.findByName("name1")[1].getId()));
+       assertThat("name3", is(tracker.findByName("test3")[1].getDesc()));
     }
     //тест изменени заявки
     @Test
     public void whenThenFindNameTestDescription2() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "testDescription1", 123L);
-        Item item2 = new Item("test2", "testDescription2", 1234L);
+        Item item1 = new Item(123L, "test1", "testDescription1");
+        Item item2 = new Item(1234L, "test2", "testDescription2");
         tracker.add(item1);
-        tracker.replace("test1", item2);
-        assertThat("testDescription2", is(tracker.findById("test2").getName()));
+        tracker.replace(item1.getId(), item2);
+        assertThat("testDescription2", is(tracker.findByName("test2")[0].getDesc()));
     }
     // удаления и поиска всех существующих заявок
     @Test
     public void whenDeleteThen() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item("test1", "name1", 123L);
-        Item item2 = new Item("test2", "name2", 1234L);
-        Item item3 = new Item("test3", "name3", 1234L);
-        Item item4 = new Item("test4", "name4", 1234L);
+        Item item1 = new Item(123L, "test1", "name1");
+        Item item2 = new Item(1234L, "test2", "name2");
+        Item item3 = new Item(1234L, "test3", "name3");
+        Item item4 = new Item(1234L, "test4", "name4");
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
-        tracker.delete("test2");
-        assertThat("test3", is(tracker.findAll()[1].getId()));
+        tracker.delete(item2.getId());
+        assertThat("test4", is(tracker.findAll()[2].getName()));
     }
 
 }

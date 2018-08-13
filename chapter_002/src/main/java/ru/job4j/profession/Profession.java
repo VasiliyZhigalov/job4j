@@ -3,7 +3,7 @@ package ru.job4j.profession;
 public class Profession {
     private Ruble pay;
 
-    public String getName(){
+    public String getName() {
         return "";
     }
 }
