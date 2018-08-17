@@ -112,7 +112,6 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки :");
         Item item = new Item(name, desc);
         if (this.tracker.replace(id, item)) {
-            this.tracker.replace(id, item);
             System.out.println("------------ Заявка с ID : " + id +  " изменена -----------");
         } else {
             System.out.println("------------ Заявка с ID : " + id +  " не найдена -----------");
@@ -127,7 +126,6 @@ public class StartUI {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите ID заявки для удаления :");
         if (this.tracker.delete(id)) {
-            this.tracker.delete(id);
             System.out.println("------------ Заявка с ID: " + id + " удалена -----------");
         } else {
             System.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
@@ -141,19 +139,26 @@ public class StartUI {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = this.input.ask("Введите ID заявки :");
         Item item = this.tracker.findById(id);
-        System.out.println("ID: " + id + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
+        if (item != null) {
+            System.out.println("ID: " + id + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
+        } else {
+            System.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
+        }
     }
     /**
-     * Метод ищет заявку по имени
+     * Метод ищет заявку по имениSystem.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
      */
     private void findByName() {
         System.out.println("------------ Поиск заявки по имени --------------");
         String name = this.input.ask("Введите имя заявки :");
         Item[] items = this.tracker.findByName(name);
         System.out.println("------------ Найдены следующие заявки--------------");
+        boolean res =false;
         for (Item item:items) {
+            res = true;
             System.out.println("ID: " + item.getId() + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
         }
+        if(!res) System.out.println(" Заявок не найдено");
     }
     /**
      * Метод выводит меню в консоль.
