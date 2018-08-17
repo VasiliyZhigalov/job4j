@@ -35,12 +35,15 @@ public class Tracker {
      * @param id  идентификатор для поиска заявки
      * @param item новая заявка
      */
-    void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean result = false;
         int index = this.findIndexById(id);
         if (index != -1) {
             items[index] = item;
             items[index].setId(id);
+            result = true;
         }
+        return result;
     }
     /**
      * Ищет заявку по id
@@ -49,7 +52,6 @@ public class Tracker {
      */
     public Item findById(String id) {
         int index = findIndexById(id);
-
         return index == -1 ? null : items[index];
     }
 
@@ -58,7 +60,7 @@ public class Tracker {
      * @param key имя
      * @return массив заявок
      */
-    Item[] findByName(String key) {
+   public Item[] findByName(String key) {
         Item[] itemByName = new Item[items.length];
         int counter = 0;
         for (int i = 0; i < this.position; i++) {
@@ -90,14 +92,16 @@ public class Tracker {
      * удаление заявки по ид
      * @param id
      */
-    public void delete(String id) {
-
+    public boolean delete(String id) {
+        boolean result = false;
         int index = this.findIndexById(id);
         if (index != -1) {
             items[index] = null;
             System.arraycopy(items, index + 1, items, index, items.length - index - 1);
             this.position--;
+            result = true;
         }
+        return result;
     }
     /**
      * возвращает копию массива this.items без null элементов;
