@@ -26,6 +26,7 @@ public class PaintTest {
     public void whenDrawSquare() {
         new Paint().draw(new Square());
         String ln = System.lineSeparator();
+
         assertThat(
                 new String(out.toByteArray()),
                 is(

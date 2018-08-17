@@ -153,12 +153,14 @@ public class StartUI {
         String name = this.input.ask("Введите имя заявки :");
         Item[] items = this.tracker.findByName(name);
         System.out.println("------------ Найдены следующие заявки--------------");
-        boolean res =false;
+        boolean res = false;
         for (Item item:items) {
             res = true;
             System.out.println("ID: " + item.getId() + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
         }
-        if(!res) System.out.println(" Заявок не найдено");
+        if (!res) {
+            System.out.println(" Заявок не найдено");
+        }
     }
     /**
      * Метод выводит меню в консоль.
