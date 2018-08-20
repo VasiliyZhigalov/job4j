@@ -78,16 +78,16 @@ public class Logic3T {
      */
     public boolean hasGap() {
         int rows = this.table.length;
-        boolean hasGap = false;
-        outerloop:
+        boolean result = false;
         for (int out = 0; out < rows; out++) {
             for (int in = 0; in < rows; in++) {
                 if (!this.table[out][in].hasMarkX() && !this.table[out][in].hasMarkO()) {
-                    hasGap = true;
-                    break outerloop;
+                    result = true;
+                    break ;
                 }
             }
+            if (result) break;
         }
-        return hasGap;
+        return result;
     }
 }
