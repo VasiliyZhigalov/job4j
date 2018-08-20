@@ -69,14 +69,14 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem());
         this.actions.add(new ShowItems());
         this.actions.add(new MenuTracker.EditItem());
         this.actions.add(new MenuTracker.DeleteItem());
         this.actions.add(new FindItemById());
         this.actions.add(new FindItemsByName());
-        this.actions.add(new ExitProgram());
+        this.actions.add(new ExitProgram(ui));
     }
 
     /**
@@ -208,14 +208,25 @@ public class MenuTracker {
             return "5. Найти заявку по имени.";
         }
     }
+
+    /**
+     * Класс для выхода из программы
+     */
     public class ExitProgram implements UserAction {
+        private final StartUI ui;
+
+        public ExitProgram(StartUI ui) {
+            this.ui = ui;
+        }
+
         @Override
         public int key() {
             return EXIT;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
-            System.exit(-1);
+                this.ui.stop();
+
         }
         @Override
         public String info() {

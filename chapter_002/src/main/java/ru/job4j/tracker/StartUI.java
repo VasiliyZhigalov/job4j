@@ -5,6 +5,13 @@ package ru.job4j.tracker;
  * @since 0.1
  */
 public class StartUI {
+    /**
+     * флаг для выхода из цикла
+     */
+    private boolean working = true;
+    /**
+     * Запорос пользователя
+     */
 
     private final Input input;
 
@@ -29,13 +36,15 @@ public class StartUI {
     public void init() {
       Tracker tracker = new Tracker();
       MenuTracker menu = new MenuTracker(this.input, tracker);
-      menu.fillActions();
+      menu.fillActions(this);
       do {
           menu.show();
           menu.select(input.ask("Выберите пункт меню:"));
-      } while (!"y".equals(this.input.ask("Выйти? (y)")));
+      } while (this.working);
     }
-
+    public void stop() {
+        this.working = false;
+    }
 
     /**
      * Запускт программы.
