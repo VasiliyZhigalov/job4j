@@ -37,11 +37,20 @@ public class StartUI {
       Tracker tracker = new Tracker();
       MenuTracker menu = new MenuTracker(this.input, tracker);
       menu.fillActions(this);
+      int[] ranges = new int[menu.getActionsLentgh()];
+      for (int i = 0; i < ranges.length; i++) {
+          ranges[i] = menu.actions.get(i).key();
+      }
+
       do {
           menu.show();
-          menu.select(input.ask("Выберите пункт меню:"));
+          menu.select(input.ask("Выберите пункт меню:", ranges));
       } while (this.working);
     }
+
+    /**
+     * выход из цикла.
+     */
     public void stop() {
         this.working = false;
     }
@@ -51,6 +60,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }

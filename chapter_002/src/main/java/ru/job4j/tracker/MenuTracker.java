@@ -15,7 +15,7 @@ public class MenuTracker {
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
-    private List<UserAction> actions = new ArrayList<UserAction>();
+    public List<UserAction> actions = new ArrayList<UserAction>();
 ////////////////////////////////////////////////////////////////////////////////
     /**
      * Константа меню для добавления новой заявки.
@@ -52,6 +52,8 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
+    public MenuTracker() {
+    }
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
@@ -84,8 +86,8 @@ public class MenuTracker {
      *
      * @param key ключ операции
      */
-    public void select(String key) {
-        this.actions.get(Integer.parseInt(key)).execute(this.input, this.tracker);
+    public void select(int key) {
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     /**
