@@ -80,6 +80,17 @@ public class MenuTracker {
         this.actions.add(new FindItemsByName());
         this.actions.add(new ExitProgram(ui));
     }
+    public int [] ranges(StartUI ui){
+        int[] ranges = new int[this.getActionsLentgh()];
+        ranges[0] = new AddItem().key();
+        ranges[1] =new ShowItems().key();
+        ranges[2] =new MenuTracker.EditItem().key();
+        ranges[3] =new MenuTracker.DeleteItem().key();
+        ranges[4] =new FindItemById().key();
+        ranges[5] =new FindItemsByName().key();
+        ranges[6] =new ExitProgram(ui).key();
+        return  ranges;
+    }
 
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
