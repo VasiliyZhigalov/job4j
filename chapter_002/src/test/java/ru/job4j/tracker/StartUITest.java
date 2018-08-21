@@ -32,8 +32,8 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
-        // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
+        // проверяем, что  элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findById(item.getId()).getName(), is("test name"));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class StartUITest {
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findAll()[1].getName(), is("test name3"));
+        assertThat(tracker.findAll()[1].getName(), is("test name2"));
     }
     @Test
     public void whenFindByIdThenTrackerHasItemWithSameName() {
