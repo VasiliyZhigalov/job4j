@@ -71,7 +71,17 @@ public class MenuTracker {
         this.actions.add(new ExitProgram(ui));
     }
 
-
+    /**
+     * Метод возращает диапозон меню.
+     * @return
+     */
+    public int[] getRanges() {
+        int[] ranges = new int[this.actions.size()];
+        for (int i = 0; i < this.actions.size(); i++) {
+            ranges[i] = this.actions.get(i).key();
+        }
+        return  ranges;
+    }
 
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
