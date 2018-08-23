@@ -62,13 +62,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions(StartUI ui) {
-        this.actions.add(new AddItem());
-        this.actions.add(new ShowItems());
-        this.actions.add(new MenuTracker.EditItem());
-        this.actions.add(new MenuTracker.DeleteItem());
-        this.actions.add(new FindItemById());
-        this.actions.add(new FindItemsByName());
-        this.actions.add(new ExitProgram(ui));
+        this.actions.add(new AddItem(0, "Создать новую заявку."));
+        this.actions.add(new ShowItems(1, "Показать все заявки."));
+        this.actions.add(new MenuTracker.EditItem(2, "Изменить заявку."));
+        this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
+        this.actions.add(new FindItemById(4, "Найти заявку по номеру."));
+        this.actions.add(new FindItemsByName(5, "Найти заявку по имени."));
+        this.actions.add(new ExitProgram(ui, 6, "Выход из программы."));
     }
 
     /**
@@ -102,11 +102,13 @@ public class MenuTracker {
             }
         }
     }
-    public class AddItem implements UserAction {
 
-        @Override
-        public int key() {
-            return ADD;
+    /**
+     * Добавление заявки
+     */
+    public class AddItem extends BaseAction {
+        public AddItem(int key, String name) {
+            super(key, name);
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -118,16 +120,14 @@ public class MenuTracker {
             System.out.println("------------ Новая заявка с ID : " + item.getId() + "-----------");
         }
 
-        @Override
-        public String info() {
-            return "0. Создать новую заявку.";
-        }
     }
-    public class ShowItems implements UserAction {
 
-        @Override
-        public int key() {
-            return SHOW;
+    /**
+     * Показать заявки
+     */
+    public class ShowItems extends BaseAction {
+        public ShowItems(int key, String name) {
+            super(key, name);
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -138,16 +138,10 @@ public class MenuTracker {
             }
 
         }
-
-        @Override
-        public String info() {
-            return "1. Показать все заявки.";
-        }
     }
-    public static class EditItem implements UserAction {
-        @Override
-        public int key() {
-            return EDIT;
+    public static class EditItem extends BaseAction {
+        public EditItem(int key, String name) {
+            super(key, name);
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -162,15 +156,14 @@ public class MenuTracker {
                 System.out.println("------------ Заявка с ID : " + id +  " не найдена -----------");
             }
         }
-        @Override
-        public String info() {
-            return "2. Изменить заявку.";
-        }
     }
-    public static class DeleteItem implements UserAction {
-        @Override
-        public int key() {
-            return DELETE;
+
+    /**
+     * удаление заявки
+     */
+    public static class DeleteItem extends BaseAction {
+        public DeleteItem(int key, String name) {
+            super(key, name);
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -182,15 +175,10 @@ public class MenuTracker {
                 System.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
             }
         }
-        @Override
-        public String info() {
-            return "3. Удалить заявку.";
-        }
     }
-    public class FindItemsByName implements UserAction {
-        @Override
-        public int key() {
-            return FINDBYNAME;
+    public class FindItemsByName extends BaseAction {
+        public FindItemsByName(int key, String name) {
+            super(key, name);
         }
         @Override
         public void execute(Input input, Tracker tracker) {
@@ -216,34 +204,24 @@ public class MenuTracker {
     /**
      * Класс для выхода из программы
      */
-    public class ExitProgram implements UserAction {
+    public class ExitProgram extends BaseAction {
         private final StartUI ui;
 
-        public ExitProgram(StartUI ui) {
+        public ExitProgram(StartUI ui, int key, String name) {
+            super(key, name);
             this.ui = ui;
-        }
-
-        @Override
-        public int key() {
-            return EXIT;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
                 this.ui.stop();
 
         }
-        @Override
-        public String info() {
-            return "6. Выход из программы.";
-        }
     }
 }
-class FindItemById implements UserAction {
-    @Override
-    public int key() {
-        return MenuTracker.FINDBYID;
+class FindItemById extends BaseAction {
+    public FindItemById(int key, String name) {
+        super(key, name);
     }
-    @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = input.ask("Введите ID заявки :");
@@ -253,10 +231,6 @@ class FindItemById implements UserAction {
         } else {
             System.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
         }
-    }
-    @Override
-    public String info() {
-        return "4. Найти заявку по номеру.";
     }
 }
 
