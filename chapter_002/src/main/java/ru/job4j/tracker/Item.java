@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
+
 public class Item {
     private String id;
     private String name;
@@ -41,5 +43,10 @@ public class Item {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.getId() + " Имя: " + this.getName() + " Описание: " + this.getDesc() + " Время_создания: " + this.getCreated();
     }
 }

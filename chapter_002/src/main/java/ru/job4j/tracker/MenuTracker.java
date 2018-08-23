@@ -80,15 +80,15 @@ public class MenuTracker {
         this.actions.add(new FindItemsByName());
         this.actions.add(new ExitProgram(ui));
     }
-    public int [] ranges(StartUI ui){
+    public int[] ranges(StartUI ui) {
         int[] ranges = new int[this.getActionsLentgh()];
         ranges[0] = new AddItem().key();
-        ranges[1] =new ShowItems().key();
-        ranges[2] =new MenuTracker.EditItem().key();
-        ranges[3] =new MenuTracker.DeleteItem().key();
-        ranges[4] =new FindItemById().key();
-        ranges[5] =new FindItemsByName().key();
-        ranges[6] =new ExitProgram(ui).key();
+        ranges[1] = new ShowItems().key();
+        ranges[2] = new MenuTracker.EditItem().key();
+        ranges[3] = new MenuTracker.DeleteItem().key();
+        ranges[4] = new FindItemById().key();
+        ranges[5] = new FindItemsByName().key();
+        ranges[6] = new ExitProgram(ui).key();
         return  ranges;
     }
 
@@ -143,7 +143,7 @@ public class MenuTracker {
             System.out.println("------------ Текущие заявки --------------");
             System.out.println(tracker.findAll().length);
             for (Item item : tracker.findAll()) {
-                System.out.println("ID: " + item.getId() + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
+                System.out.println(item.toString());
             }
 
         }
@@ -210,7 +210,7 @@ public class MenuTracker {
             boolean res = false;
             for (Item item:items) {
                 res = true;
-                System.out.println("ID: " + item.getId() + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
+                System.out.println(item.toString());
             }
             if (!res) {
                 System.out.println(" Заявок не найдено");
@@ -258,7 +258,7 @@ class FindItemById implements UserAction {
         String id = input.ask("Введите ID заявки :");
         Item item = tracker.findById(id);
         if (item != null) {
-            System.out.println("ID: " + id + " Имя: " + item.getName() + " Описание: " + item.getDesc() + " Время_создания: " + item.getCreated());
+            System.out.println(item.toString());
         } else {
             System.out.println("------------ Заявка с ID: " + id + " не найдена -----------");
         }

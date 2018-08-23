@@ -32,8 +32,9 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6"});
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
+        System.out.println(tracker.findById(item.getId()).getName());
         // проверяем, что  элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findById(item.getId()).getName(), is("test name"));
+        assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
 
     @Test
@@ -49,7 +50,7 @@ public class StartUITest {
         // создаём StartUI и вызываем метод init()
         new StartUI(input, tracker).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
-        assertThat(tracker.findAll()[1].getName(), is("test name2"));
+        assertThat(tracker.findAll()[1].getName(), is("test name3"));
     }
     @Test
     public void whenFindByIdThenTrackerHasItemWithSameName() {
@@ -81,14 +82,12 @@ public class StartUITest {
     }
     @Before
     public void loadOutput() {
-        System.out.println("execute before method");
-        menuToString();
+        System.setOut(new PrintStream(this.out));
     }
     @After
 
     public void backOutput() {
-        System.setOut(stdout);
-        System.out.println("execute after method");
+        System.setOut(new PrintStream(stdout));
     }
 
     /**
@@ -98,6 +97,7 @@ public class StartUITest {
     public void whenShowMenu() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"6"});
+        menuToString();
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(outStr.toString()));
     }
@@ -110,6 +110,7 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("test name 1", "test description"));
         Item item2 = tracker.add(new Item("test name 2", "test description"));
         Input input = new StubInput(new String[]{"1", "6"});
+        menuToString();
         String ln = System.lineSeparator();
         outStr.append("------------ Текущие заявки --------------");
         outStr.append(ln);
@@ -134,6 +135,7 @@ public class StartUITest {
         Item item2 = tracker.add(new Item("test name 2", "test description"));
         Input input = new StubInput(new String[]{"5", "test name 2", "6"});
         String ln = System.lineSeparator();
+        menuToString();
         outStr.append("------------ Поиск заявки по имени --------------");
         outStr.append(ln);
         outStr.append("------------ Найдены следующие заявки--------------");
@@ -151,10 +153,7 @@ public class StartUITest {
 
     private void menuToString() {
         String ln = System.lineSeparator();
-        System.setOut(new PrintStream(out));
-        outStr.append("Меню.")
-                .append(ln)
-                .append("0. Создать новую заявку.")
+        outStr  .append("0. Создать новую заявку.")
                 .append(ln)
                 .append("1. Показать все заявки.")
                 .append(ln)

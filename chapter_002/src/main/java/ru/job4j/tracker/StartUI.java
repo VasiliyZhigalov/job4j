@@ -34,7 +34,6 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
-      Tracker tracker = new Tracker();
       MenuTracker menu = new MenuTracker(this.input, tracker);
       menu.fillActions(this);
       do {
@@ -55,6 +54,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 }
