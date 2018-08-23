@@ -58,16 +58,6 @@ public class MenuTracker {
         this.input = input;
         this.tracker = tracker;
     }
-
-    /**
-     * Метод для получения массива меню.
-     *
-     * @return длину массива
-     */
-    public int getActionsLentgh() {
-        return this.actions.size();
-    }
-
     /**
      * Метод заполняет массив.
      */
@@ -80,15 +70,16 @@ public class MenuTracker {
         this.actions.add(new FindItemsByName());
         this.actions.add(new ExitProgram(ui));
     }
-    public int[] ranges(StartUI ui) {
-        int[] ranges = new int[this.getActionsLentgh()];
-        ranges[0] = new AddItem().key();
-        ranges[1] = new ShowItems().key();
-        ranges[2] = new MenuTracker.EditItem().key();
-        ranges[3] = new MenuTracker.DeleteItem().key();
-        ranges[4] = new FindItemById().key();
-        ranges[5] = new FindItemsByName().key();
-        ranges[6] = new ExitProgram(ui).key();
+
+    /**
+     * Метод возращает диапозон меню.
+     * @return
+     */
+    public int[] getRanges() {
+        int[] ranges = new int[this.actions.size()];
+        for (int i = 0; i < this.actions.size(); i++) {
+            ranges[i] = this.actions.get(i).key();
+        }
         return  ranges;
     }
 

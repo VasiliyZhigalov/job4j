@@ -38,7 +38,7 @@ public class StartUI {
       menu.fillActions(this);
       do {
           menu.show();
-          menu.select(input.ask("Выберите пункт меню:", menu.ranges(this)));
+          menu.select(input.ask("Выберите пункт меню:", menu.getRanges()));
       } while (this.working);
     }
 
