@@ -14,8 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
-import ru.job4j.chess.figures.*;
-
+import ru.job4j.chess.figures.black.*;
+import ru.job4j.chess.figures.white.*;
 
 public class Chess extends Application {
     private static final String JOB4J = "Шахматы на www.job4j.ru";
@@ -114,7 +114,7 @@ public class Chess extends Application {
     }
 
     private void buildBlackTeam(Group grid) {
-       /* this.add(new PawnBlack(Cell.A7), grid);
+       this.add(new PawnBlack(Cell.A7), grid);
         this.add(new PawnBlack(Cell.B7), grid);
         this.add(new PawnBlack(Cell.C7), grid);
         this.add(new PawnBlack(Cell.D7), grid);
@@ -130,13 +130,13 @@ public class Chess extends Application {
         this.add(new BishopBlack(Cell.F8), grid);
         this.add(new KnightBlack(Cell.G8), grid);
         this.add(new RookBlack(Cell.H8), grid);
-    */
-        this.add(new Bishop(Cell.F8), grid);
+
+
 
     }
 
     public void buildWhiteTeam(Group grid) {
-        /*
+
         this.add(new PawnWhite(Cell.A2), grid);
         this.add(new PawnWhite(Cell.B2), grid);
         this.add(new PawnWhite(Cell.C2), grid);
@@ -153,7 +153,7 @@ public class Chess extends Application {
         this.add(new BishopWhite(Cell.F1), grid);
         this.add(new KnightWhite(Cell.G1), grid);
         this.add(new RookWhite(Cell.H1), grid);
-        */
+
     }
 
     public void add(Figure figure, Group grid) {

@@ -74,10 +74,11 @@ public class Board {
         for (int i = 0; i < this.index; i++) {
             if (this.figures[i].position().equals(source)) {
                 result = i;
+                break;
             }
-            if (result == -1) {
-                throw new FigureNotFoundException("Figure not found");
-            }
+        }
+        if (result == -1) {
+            throw new FigureNotFoundException("Figure not found");
         }
         return result;
     }
