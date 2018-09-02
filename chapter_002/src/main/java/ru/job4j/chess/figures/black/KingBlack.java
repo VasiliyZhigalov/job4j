@@ -67,11 +67,10 @@ public class KingBlack extends Figure {
      */
     @Override
     protected boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) <= 1 && Math.abs(dest.y - source.y) <= 1) {
-            return true;
-        } else {
+        if (Math.abs(dest.x - source.x) > 1 || Math.abs(dest.y - source.y) > 1) {
             throw new ImpossibleMoveException("invalid move");
         }
+        return true;
     }
 
 

@@ -56,10 +56,9 @@ public class PawnBlack extends Figure {
      */
     @Override
     public boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (dest.x - source.x == 0 && dest.y - source.y == -1) {
-            return true;
-        } else {
+        if (dest.x - source.x != 0 || dest.y - source.y != -1) {
             throw new ImpossibleMoveException("invalid move");
         }
+        return true;
     }
 }

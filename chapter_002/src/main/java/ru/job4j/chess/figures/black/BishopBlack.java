@@ -58,11 +58,9 @@ public class BishopBlack extends Figure {
      */
     @Override
     protected boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y)) {
-            return true;
-        } else {
+        if (Math.abs(dest.x - source.x) != Math.abs(dest.y - source.y)) {
             throw new ImpossibleMoveException("invalid move");
         }
-
+        return true;
     }
 }

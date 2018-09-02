@@ -67,15 +67,12 @@ public class QeenWhite extends Figure {
      */
     @Override
     protected boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y)
-                || Math.abs(dest.x - source.x) == 0 && Math.abs(dest.y - source.y) > 0
-                || Math.abs(dest.x - source.x) > 0 && Math.abs(dest.y - source.y) == 0
+        if (Math.abs(dest.x - source.x) != Math.abs(dest.y - source.y)
+                && Math.abs(dest.x - source.x) != 0 && Math.abs(dest.y - source.y) != 0
                 ) {
-            return true;
-        } else {
             throw new ImpossibleMoveException("invalid move");
         }
-
+        return true;
     }
 
 }

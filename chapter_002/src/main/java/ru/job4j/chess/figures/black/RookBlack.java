@@ -8,6 +8,7 @@ public class RookBlack extends Figure {
     public RookBlack(Cell position) {
         super(position);
     }
+
     /**
      * possible path array
      *
@@ -39,6 +40,7 @@ public class RookBlack extends Figure {
         }
         return steps;
     }
+
     /**
      * Copy figure
      *
@@ -49,6 +51,7 @@ public class RookBlack extends Figure {
     public Figure copy(Cell dest) {
         return new RookBlack(dest);
     }
+
     /**
      * checks for a way
      *
@@ -59,14 +62,10 @@ public class RookBlack extends Figure {
      */
     @Override
     protected boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) == 0 && Math.abs(dest.y - source.y) > 0
-                || Math.abs(dest.x - source.x) > 0 && Math.abs(dest.y - source.y) == 0
-                ) {
-            return true;
-        } else {
+        if (Math.abs(dest.x - source.x) != 0 && Math.abs(dest.y - source.y) != 0) {
             throw new ImpossibleMoveException("invalid move");
         }
-
+        return true;
     }
 
 }

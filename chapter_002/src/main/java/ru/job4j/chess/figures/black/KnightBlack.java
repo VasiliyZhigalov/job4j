@@ -45,14 +45,11 @@ public class KnightBlack extends Figure {
      */
     @Override
     public boolean wayIsValid(Cell source, Cell dest) throws ImpossibleMoveException {
-        if (Math.abs(dest.x - source.x) == 2 && Math.abs(dest.y - source.y) == 1
-                || Math.abs(dest.x - source.x) == 1 && Math.abs(dest.y - source.y) == 2
+        if (!(Math.abs(dest.x - source.x) == 2 && Math.abs(dest.y - source.y) == 1)
+                && !(Math.abs(dest.x - source.x) == 1 && Math.abs(dest.y - source.y) == 2)
                 ) {
-            return true;
-        } else {
             throw new ImpossibleMoveException("invalid move");
         }
+        return true;
     }
-
-
 }

@@ -114,7 +114,7 @@ public class Chess extends Application {
     }
 
     private void buildBlackTeam(Group grid) {
-       this.add(new PawnBlack(Cell.A7), grid);
+        this.add(new PawnBlack(Cell.A7), grid);
         this.add(new PawnBlack(Cell.B7), grid);
         this.add(new PawnBlack(Cell.C7), grid);
         this.add(new PawnBlack(Cell.D7), grid);
@@ -130,7 +130,6 @@ public class Chess extends Application {
         this.add(new BishopBlack(Cell.F8), grid);
         this.add(new KnightBlack(Cell.G8), grid);
         this.add(new RookBlack(Cell.H8), grid);
-
 
 
     }
