@@ -14,7 +14,7 @@ public class Tracker {
     private int position = 0;
     /**
      * Метод реализаущий добавление заявки в хранилище
-     * @param item новая заявка
+     * @param item
      */
     public Item add(Item item) {
         item.setId(this.generateId(item.getCreated()));
@@ -32,8 +32,8 @@ public class Tracker {
     }
     /**
      * Заменить ячейку в массиве заявок
-     * @param id  идентификатор для поиска заявки
-     * @param item новая заявка
+     * @param id
+     * @param item
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
@@ -47,8 +47,8 @@ public class Tracker {
     }
     /**
      * Ищет заявку по id
-     * @param id идентификатор
-     * @return заявка
+     * @param id
+     * @return
      */
     public Item findById(String id) {
         int index = findIndexById(id);
@@ -57,8 +57,8 @@ public class Tracker {
 
     /**
      * Ищет заявки с именем key
-     * @param key имя
-     * @return массив заявок
+     * @param key
+     * @return
      */
    public Item[] findByName(String key) {
         Item[] itemByName = new Item[items.length];
@@ -75,7 +75,7 @@ public class Tracker {
     /**
      * Ищет индекс по id
      * @param id
-     * @return индекс
+     * @return
      */
     private int findIndexById(String id) {
         int result = -1;

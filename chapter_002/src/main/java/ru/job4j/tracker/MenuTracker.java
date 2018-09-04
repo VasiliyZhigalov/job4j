@@ -7,19 +7,40 @@ public class MenuTracker {
     private Input input;
     private Tracker tracker;
     public List<UserAction> actions = new ArrayList<UserAction>();
+    /**
+     * Константа меню для добавления новой заявки.
+     */
     private static final int ADD = 0;
+    /**
+     * Вывести все заявки.
+     */
     private static final int SHOW = 1;
+    /**
+     * Изменить заявку
+     */
     private static final int EDIT = 2;
+    /**
+     * Удалить заявку
+     */
     private static final int DELETE = 3;
+    /**
+     * Найти заявку по ид
+     */
     public static final int FINDBYID = 4;
+    /**
+     * Найти заявки по имени
+     */
     private static final int FINDBYNAME = 5;
+    /**
+     * Константа для выхода из цикла.
+     */
     private static final int EXIT = 6;
 
     /**
      * Конструктор.
      *
-     * @param input   объект типа Input
-     * @param tracker объект типа Tracker
+     * @param input
+     * @param tracker
      */
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -30,13 +51,13 @@ public class MenuTracker {
      * Метод заполняет массив.
      */
     public void fillActions() {
-        this.actions.add(new AddItem(0, "Создать новую заявку."));
-        this.actions.add(new ShowItems(1, "Показать все заявки."));
-        this.actions.add(new MenuTracker.EditItem(2, "Изменить заявку."));
-        this.actions.add(new MenuTracker.DeleteItem(3, "Удалить заявку."));
-        this.actions.add(new FindItemById(4, "Найти заявку по номеру."));
-        this.actions.add(new FindItemsByName(5, "Найти заявку по имени."));
-        this.actions.add(new ExitProgram(6, "Выход из программы."));
+        this.actions.add(new AddItem(ADD, "Создать новую заявку."));
+        this.actions.add(new ShowItems(SHOW, "Показать все заявки."));
+        this.actions.add(new MenuTracker.EditItem(EDIT, "Изменить заявку."));
+        this.actions.add(new MenuTracker.DeleteItem(DELETE, "Удалить заявку."));
+        this.actions.add(new FindItemById(FINDBYID, "Найти заявку по номеру."));
+        this.actions.add(new FindItemsByName(FINDBYNAME, "Найти заявку по имени."));
+        //this.actions.add(new ExitProgram(EXIT, "Выход из программы."));
     }
 
     /**
@@ -55,7 +76,7 @@ public class MenuTracker {
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
      *
-     * @param key ключ операции
+     * @param key
      */
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);
@@ -194,6 +215,9 @@ public class MenuTracker {
     }
 }
 
+    /**
+     * Класс для поиска по ID
+     */
 class FindItemById extends BaseAction {
     public FindItemById(int key, String name) {
         super(key, name);

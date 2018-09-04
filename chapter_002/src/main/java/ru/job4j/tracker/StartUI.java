@@ -9,6 +9,7 @@ public class StartUI {
      * флаг для выхода из цикла
      */
     private boolean working = true;
+
     /**
      * Запорос пользователя
      */
@@ -23,8 +24,8 @@ public class StartUI {
     /**
      * Конструтор инициализирующий поля.
      *
-     * @param input   ввод данных.
-     * @param tracker хранилище заявок.
+     * @param input
+     * @param tracker
      */
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
