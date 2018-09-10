@@ -222,7 +222,6 @@ class FindItemById extends BaseAction {
     public FindItemById(int key, String name) {
         super(key, name);
     }
-
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = input.ask("Введите ID заявки :");

@@ -5,10 +5,6 @@ package ru.job4j.tracker;
  * @since 0.1
  */
 public class StartUI {
-    /**
-     * флаг для выхода из цикла
-     */
-    private boolean working = true;
 
     /**
      * Запорос пользователя
@@ -43,10 +39,7 @@ public class StartUI {
             menu.show();
             ask = input.ask("Выберите пункт меню:", menu.getRanges());
             menu.select(ask);
-            if (ask == 6) {
-                break;
-            }
-        } while (true);
+        } while (ask != 6);
     }
 
     /**
