@@ -36,12 +36,17 @@ public class StartUI {
      * Основой цикл программы.
      */
     public void init() {
+        int ask;
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
         do {
             menu.show();
-            menu.select(input.ask("Выберите пункт меню:", menu.getRanges()));
-        } while (!"y".equals(this.input.ask("Выйти? (y) :")));
+            ask = input.ask("Выберите пункт меню:", menu.getRanges());
+            menu.select(ask);
+            if (ask == 6) {
+                break;
+            }
+        } while (true);
     }
 
     /**

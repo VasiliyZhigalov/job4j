@@ -57,7 +57,7 @@ public class MenuTracker {
         this.actions.add(new MenuTracker.DeleteItem(DELETE, "Удалить заявку."));
         this.actions.add(new FindItemById(FINDBYID, "Найти заявку по номеру."));
         this.actions.add(new FindItemsByName(FINDBYNAME, "Найти заявку по имени."));
-        //this.actions.add(new ExitProgram(EXIT, "Выход из программы."));
+        this.actions.add(new ExitProgram(EXIT, "Выход из программы."));
     }
 
     /**
@@ -210,14 +210,14 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-
+            System.out.println("Программа завершена.");
         }
     }
 }
 
-    /**
-     * Класс для поиска по ID
-     */
+/**
+ * Класс для поиска по ID
+ */
 class FindItemById extends BaseAction {
     public FindItemById(int key, String name) {
         super(key, name);

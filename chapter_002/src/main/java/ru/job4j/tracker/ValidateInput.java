@@ -7,12 +7,15 @@ public class ValidateInput implements Input {
     public ValidateInput(Input input) {
         this.input = input;
     }
+
     @Override
     public String ask(String questoin) {
         return this.input.ask(questoin);
     }
+
     /**
      * Проверяет валидность полученных от пользователя данных.
+     *
      * @param question
      * @param range
      * @return
@@ -31,24 +34,5 @@ public class ValidateInput implements Input {
             }
         } while (invalid);
         return value;
-    }
-
-    /**
-     * Проверяет имеется ли ключ в диапозоне
-     * @param key ключ
-     * @param range диапозон ключей
-     */
-    public void notInTheRange(int key, int[] range) {
-        boolean exist = false;
-        for (int value : range) {
-            if (value == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (!exist) {
-            throw new MenuOutException("Out of menu range");
-        }
-
     }
 }
