@@ -83,10 +83,12 @@ public class Logic3T {
             for (int in = 0; in < rows; in++) {
                 if (!this.table[out][in].hasMarkX() && !this.table[out][in].hasMarkO()) {
                     result = true;
-                    break ;
+                    break;
                 }
             }
-            if (result) break;
+            if (result) {
+                break;
+            }
         }
         return result;
     }

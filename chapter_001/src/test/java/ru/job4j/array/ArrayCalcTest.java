@@ -11,7 +11,7 @@ public class ArrayCalcTest {
 
         int[] first = {1, 2, 5, 9};
         int[] second = {0, 2, 3, 5, 12};
-        int[] result = calc.combiningArrays(first,second);
+        int[] result = calc.combiningArrays(first, second);
         int[] expect = {0, 1, 2, 2, 3, 5, 5, 9, 12};
         assertThat(result, is(expect));
     }
