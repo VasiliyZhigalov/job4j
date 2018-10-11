@@ -20,6 +20,6 @@ public class UserConvertTest {
         UserConvert userConvert = new UserConvert();
         HashMap<Integer, User> result = userConvert.process(UserList);
 
-        assertThat(result.get(2).name, is("Ivan"));
+        assertThat(result.get(2).getName(), is("Ivan"));
     }
 }
