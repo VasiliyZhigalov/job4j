@@ -15,7 +15,7 @@ public class TrackerTest {
         Item item2 = new Item(1234L, "test2", "testDescription2");
         tracker.add(item1);
         tracker.add(item2);
-        String id = tracker.findAll()[1].getId();
+        String id = tracker.findAll().get(1).getId();
         assertThat("testDescription2", is(tracker.findById(id).getDesc()));
     }
     //тест поиска по имени
@@ -28,7 +28,7 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
-       assertThat("name3", is(tracker.findByName("test3")[1].getDesc()));
+       assertThat("name3", is(tracker.findByName("test3").get(1).getDesc()));
     }
     //тест изменени заявки
     @Test
@@ -38,7 +38,7 @@ public class TrackerTest {
         Item item2 = new Item(1234L, "test2", "testDescription2");
         tracker.add(item1);
         tracker.replace(item1.getId(), item2);
-        assertThat("testDescription2", is(tracker.findByName("test2")[0].getDesc()));
+        assertThat("testDescription2", is(tracker.findByName("test2").get(0).getDesc()));
     }
     // удаления и поиска всех существующих заявок
     @Test
@@ -53,7 +53,7 @@ public class TrackerTest {
         tracker.add(item3);
         tracker.add(item4);
         tracker.delete(item2.getId());
-        assertThat("test4", is(tracker.findAll()[2].getName()));
+        assertThat("test4", is(tracker.findAll().get(2).getName()));
     }
 
 }

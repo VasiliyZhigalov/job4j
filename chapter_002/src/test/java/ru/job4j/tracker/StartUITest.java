@@ -19,7 +19,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class StartUITest {
         Item item3 = tracker.add(new Item("test name3", "desc3"));
         Input input = new StubInput(new String[]{"3", item2.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[1].getName(), is("test name3"));
+        assertThat(tracker.findAll().get(1).getName(), is("test name3"));
     }
     @Test
     public void whenFindByIdThenTrackerHasItemWithSameName() {
@@ -57,7 +57,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "test description"));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findByName(item.getName())[0].getDesc(), is("test description"));
+        assertThat(tracker.findByName(item.getName()).get(0).getDesc(), is("test description"));
     }
     @Before
     public void loadOutput() {
@@ -81,7 +81,7 @@ public class StartUITest {
         String ln = System.lineSeparator();
         outStr.append("------------ Текущие заявки --------------");
         outStr.append(ln);
-        outStr.append(tracker.findAll().length);
+        outStr.append(tracker.findAll().size());
         outStr.append(ln);
         for (Item item: tracker.findAll()) {
             outStr.append(item.toString());
