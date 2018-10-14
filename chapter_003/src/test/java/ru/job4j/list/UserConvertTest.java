@@ -13,12 +13,12 @@ import static org.junit.Assert.assertThat;
 public class UserConvertTest {
     @Test
     public void whenUserListThenUserMap() {
-        List<User> UserList = Arrays.asList(
+        List<User> userList = Arrays.asList(
                 new User(1, "Vasiliy", "Izhevsk"),
                 new User(2, "Ivan", "Ivanovo")
         );
         UserConvert userConvert = new UserConvert();
-        HashMap<Integer, User> result = userConvert.process(UserList);
+        HashMap<Integer, User> result = userConvert.process(userList);
 
         assertThat(result.get(2).getName(), is("Ivan"));
     }
