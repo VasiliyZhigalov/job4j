@@ -11,7 +11,7 @@ public class Banking {
      * @param user
      */
     public void addUser(User user) {
-        users.putIfAbsent(user, new ArrayList<>());
+        users.computeIfAbsent(user, k -> new ArrayList<>());
     }
 
     /**

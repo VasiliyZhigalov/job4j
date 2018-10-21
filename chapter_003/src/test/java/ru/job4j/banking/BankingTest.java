@@ -40,9 +40,6 @@ public class BankingTest {
         banking.addAccountToUser("123", account1);
         banking.addAccountToUser("123", account2);
         List<Account> result = banking.users.get(user1);
-        for (Account a : result) {
-            System.out.println(a.getRequisites());
-        }
         assertThat(result.get(1).getRequisites(), is("22222"));
     }
 
