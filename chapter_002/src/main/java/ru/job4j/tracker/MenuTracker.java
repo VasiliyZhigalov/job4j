@@ -86,11 +86,7 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
-        for (UserAction action : this.actions) {
-            if (action != null) {
-                System.out.println(action.info());
-            }
-        }
+        this.actions.forEach(action -> System.out.println(action.info()));
     }
 
     /**
@@ -222,6 +218,7 @@ class FindItemById extends BaseAction {
     public FindItemById(int key, String name) {
         super(key, name);
     }
+
     public void execute(Input input, Tracker tracker) {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = input.ask("Введите ID заявки :");
