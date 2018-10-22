@@ -1,11 +1,9 @@
 package ru.job4j.chess;
 
 import org.junit.Test;
-import ru.job4j.chess.figures.black.BishopBlack;
 import ru.job4j.chess.figures.Cell;
-import ru.job4j.chess.figures.black.KingBlack;
+import ru.job4j.chess.figures.black.BishopBlack;
 import ru.job4j.chess.figures.black.PawnBlack;
-
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
