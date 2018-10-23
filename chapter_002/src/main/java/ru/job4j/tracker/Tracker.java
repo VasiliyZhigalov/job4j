@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Tracker {
     /**
@@ -51,6 +52,18 @@ public class Tracker {
     }
 
     /**
+     * сравнение id
+     *
+     * @param id
+     * @param item
+     * @return
+     */
+    private boolean comparID(String id, Item item) {
+        Predicate<String> predicate = idF -> item.getId().equals(idF);
+        return predicate.test(id);
+    }
+
+    /**
      * Ищет заявку по id
      *
      * @param id
@@ -87,7 +100,7 @@ public class Tracker {
         int result = -1;
         int index = 0;
         for (Item item : items) {
-            if (id.equals(item.getId())) {
+            if (comparID(id, item)) {
                 result = index;
                 break;
             }
