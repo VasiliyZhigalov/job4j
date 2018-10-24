@@ -3,6 +3,8 @@ package ru.job4j.chess;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.function.Predicate;
+
 public class Board {
     Figure[] figures = new Figure[32];
     private int index = 0;
@@ -54,7 +56,7 @@ public class Board {
     public boolean wayIsOccupied(Cell[] way) throws OccupiedWayException {
         for (int i = 0; i < this.index; i++) {
             for (Cell step : way) {
-                if (this.figures[i].position().equals(step)) {
+                if (isEqualsPosition(this.figures[i], step)) {
                     throw new OccupiedWayException("Way is occupied");
                 }
             }
@@ -72,7 +74,7 @@ public class Board {
     private int findIndexFigureByCell(Cell source) throws FigureNotFoundException {
         int result = -1;
         for (int i = 0; i < this.index; i++) {
-            if (this.figures[i].position().equals(source)) {
+            if (isEqualsPosition(this.figures[i], source)) {
                 result = i;
                 break;
             }
@@ -81,6 +83,11 @@ public class Board {
             throw new FigureNotFoundException("Figure not found");
         }
         return result;
+    }
+
+    private boolean isEqualsPosition(Figure figure, Cell source) {
+        Predicate<Cell> predicate = position -> figure.position().equals(position);
+        return predicate.test(source);
     }
 
     public void clean() {
