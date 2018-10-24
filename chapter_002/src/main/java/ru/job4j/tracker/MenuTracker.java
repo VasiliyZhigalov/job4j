@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MenuTracker {
     private Input input;
@@ -86,7 +88,19 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
-        this.actions.forEach(action -> System.out.println(action.info()));
+        for (UserAction action : this.actions) {
+            printAction(action);
+        }
+    }
+
+    /**
+     * Функция вывода пункта меню на экран.
+     *
+     * @param userAction
+     */
+    private void printAction(UserAction userAction) {
+        Consumer<UserAction> consumer = action -> System.out.println(action.info());
+        consumer.accept(userAction);
     }
 
     /**
