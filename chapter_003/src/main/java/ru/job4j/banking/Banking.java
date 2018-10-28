@@ -24,16 +24,7 @@ public class Banking {
     }
 
     private User findUserByPassport(String passport) {
-        User result = null;
-        if (users != null) {
-            for (User user : users.keySet()) {
-                if (user.getPassport().equals(passport)) {
-                    result = user;
-                    break;
-                }
-            }
-        }
-        return result;
+        return users.keySet().stream().filter(user -> user.getPassport().equals(passport)).findAny().orElse(null);
     }
 
     /**
@@ -76,11 +67,7 @@ public class Banking {
         Account result = null;
         List<Account> accounts = users.get(findUserByPassport(passport));
         if (accounts != null) {
-            for (Account account : accounts) {
-                if (account.getRequisites().equals(requisite)) {
-                    result = account;
-                }
-            }
+            result = accounts.stream().filter(account -> account.getRequisites().equals(requisite)).findFirst().orElse(null);
         }
         return result;
     }

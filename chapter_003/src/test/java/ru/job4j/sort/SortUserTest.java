@@ -17,15 +17,15 @@ public class SortUserTest {
         SortUser sortUser = new SortUser();
         List<User> userList = Arrays.asList(new User("Ivan", 50), new User("Adam", 66), new User("Sergey", 12));
         Set<User> result = sortUser.sort(userList);
-        assertThat(new ArrayList<>(result).get(0).name, is("Sergey"));
+        assertThat(new ArrayList<>(result).get(0).getName(), is("Sergey"));
     }
 
     @Test
     public void whenSortNameLengthThenIvan() {
         SortUser sortUser = new SortUser();
-        List<User> userList = Arrays.asList(new User("Mikhail", 50), new User("Ivan", 66), new User("Sergey", 12));
+        List<User> userList = Arrays.asList(new User("Mikhail", 50), new User("Zen", 66), new User("Sergey", 12));
         List<User> result = sortUser.sortNameLength(userList);
-        assertThat(result.get(0).name, is("Ivan"));
+        assertThat(result.get(0).getName(), is("Zen"));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class SortUserTest {
         SortUser sortUser = new SortUser();
         List<User> userList = Arrays.asList(new User("Mikhail", 50), new User("Ivan", 30), new User("Adam", 66), new User("Adam", 34), new User("Sergey", 12));
         List<User> result = sortUser.sortByAllFields(userList);
-        assertThat(result.get(0).name + "-" + result.get(0).age, is("Adam-34"));
+        assertThat(result.get(0).getName() + "-" + result.get(0).getAge(), is("Adam-34"));
     }
 }
 
