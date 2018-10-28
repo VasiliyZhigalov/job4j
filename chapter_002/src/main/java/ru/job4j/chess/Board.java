@@ -3,7 +3,9 @@ package ru.job4j.chess;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 public class Board {
     Figure[] figures = new Figure[32];
@@ -72,13 +74,10 @@ public class Board {
      * @throws FigureNotFoundException
      */
     private int findIndexFigureByCell(Cell source) throws FigureNotFoundException {
-        int result = -1;
-        for (int i = 0; i < this.index; i++) {
-            if (isEqualsPosition(this.figures[i], source)) {
-                result = i;
-                break;
-            }
-        }
+        int result = IntStream.range(0, this.figures.length)
+                .filter(pos -> this.figures[pos] != null && this.figures[pos].position().equals(source))
+                .findFirst()
+                .orElse(-1);
         if (result == -1) {
             throw new FigureNotFoundException("Figure not found");
         }
